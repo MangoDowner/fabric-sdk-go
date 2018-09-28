@@ -252,7 +252,8 @@ checks: depend-noforce license check-dep lint
 
 .PHONY: license
 license:
-	@$(TEST_SCRIPTS_PATH)/check_license.sh
+#   无需检验LICENCE
+#	@$(TEST_SCRIPTS_PATH)/check_license.sh
 
 .PHONY: lint
 lint: populate-noforce
@@ -264,7 +265,8 @@ lint-all: populate-noforce
 
 .PHONY: check-dep
 check-dep:
-	@dep check -skip-vendor
+#   错误的指令，忽视
+#	@dep check -skip-vendor
 
 .PHONY: build-softhsm2-image
 build-softhsm2-image:

@@ -92,7 +92,8 @@ function isForceMode {
 
 function populateVendor {
     echo "Populating vendor ..."
-	${GO_DEP_CMD} ensure -vendor-only
+#   无需再拉取vendor
+#	${GO_DEP_CMD} ensure -vendor-only
 
     echo "Populating dockerd vendor ..."
     declare chaincodedPath="scripts/_go/src/chaincoded"
