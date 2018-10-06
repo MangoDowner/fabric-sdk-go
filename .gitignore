@@ -8,7 +8,6 @@
 .DS_Store
 .vscode
 debug.test
-vendor/
 scripts/_go/pkg/
 scripts/_go/bin/
 .idea/
