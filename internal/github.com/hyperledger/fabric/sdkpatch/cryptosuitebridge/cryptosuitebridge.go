@@ -45,6 +45,7 @@ const (
 	SHA3_256         = bccsp.SHA3_256
 	SHA3_384         = bccsp.SHA3_384
 	X509Certificate  = bccsp.X509Certificate
+	GMSM3            = bccsp.GMSM3
 )
 
 // NewCspSigner is a bridge for bccsp signer.New call
@@ -116,4 +117,8 @@ func GetX509PublicKeyImportOpts(ephemeral bool) core.KeyImportOpts {
 // or PKCS#8 format.
 func GetECDSAPrivateKeyImportOpts(ephemeral bool) core.KeyImportOpts {
 	return &bccsp.ECDSAPrivateKeyImportOpts{Temporary: ephemeral}
+}
+
+func GetSM2PrivateKeyImportOpts(ephemeral bool) core.KeyImportOpts {
+	return &bccsp.GMSM2PrivateKeyImportOpts{Temporary: ephemeral}
 }

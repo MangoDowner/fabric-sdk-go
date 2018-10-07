@@ -12,7 +12,7 @@ package lib
 
 import (
 	"crypto/tls"
-	"crypto/x509"
+	"github.com/oldhyperledger/gmsm/sm2"
 	"encoding/hex"
 	"encoding/pem"
 	"net/http"
@@ -42,12 +42,12 @@ func GetCertID(bytes []byte) (string, string, error) {
 }
 
 // BytesToX509Cert converts bytes (PEM or DER) to an X509 certificate
-func BytesToX509Cert(bytes []byte) (*x509.Certificate, error) {
+func BytesToX509Cert(bytes []byte) (*sm2.Certificate, error) {
 	dcert, _ := pem.Decode(bytes)
 	if dcert != nil {
 		bytes = dcert.Bytes
 	}
-	cert, err := x509.ParseCertificate(bytes)
+	cert, err := sm2.ParseCertificate(bytes)
 	if err != nil {
 		return nil, errors.Wrap(err, "Buffer was neither PEM nor DER encoding")
 	}

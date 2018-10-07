@@ -14,6 +14,7 @@ import (
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
 	"github.com/hyperledger/fabric-sdk-go/pkg/core/cryptosuite/bccsp/wrapper"
 	"github.com/pkg/errors"
+	sw2 "github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/factory/sw"
 )
 
 var logger = logging.NewLogger("fabsdk/core")
@@ -66,12 +67,13 @@ func GetSuite(securityLevel int, hashFamily string, keyStore bccsp.KeyStore) (co
 
 //GetOptsByConfig Returns Factory opts for given SDK config
 func getOptsByConfig(c core.CryptoSuiteConfig) *bccspSw.SwOpts {
-	opts := &bccspSw.SwOpts{
-		HashFamily: c.SecurityAlgorithm(),
+	opts := &sw2.SwOpts{
+		HashFamily: "SM3",
 		SecLevel:   c.SecurityLevel(),
-		FileKeystore: &bccspSw.FileKeystoreOpts{
+		FileKeystore: &sw2.FileKeystoreOpts{
 			KeyStorePath: c.KeyStorePath(),
 		},
+		Ephemeral: true,
 	}
 	logger.Debug("Initialized SW cryptosuite")
 
@@ -79,10 +81,10 @@ func getOptsByConfig(c core.CryptoSuiteConfig) *bccspSw.SwOpts {
 }
 
 func getEphemeralOpts() *bccspSw.SwOpts {
-	opts := &bccspSw.SwOpts{
-		HashFamily: "SHA2",
+	opts := &sw2.SwOpts{
+		HashFamily: "SM3",
 		SecLevel:   256,
-		Ephemeral:  false,
+		Ephemeral:  true,
 	}
 	logger.Debug("Initialized ephemeral SW cryptosuite with default opts")
 

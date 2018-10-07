@@ -26,6 +26,7 @@ import (
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
+	"github.com/tjfoc/gmsm/sm2"
 	"encoding/asn1"
 	"encoding/pem"
 	"errors"
@@ -76,6 +77,15 @@ func PrivateKeyToDER(privateKey *ecdsa.PrivateKey) ([]byte, error) {
 	}
 
 	return x509.MarshalECPrivateKey(privateKey)
+}
+
+// PrivateKeyToDER marshals a private key to der
+func PrivateSM2KeyToDER(privateKey *sm2.PrivateKey) ([]byte, error) {
+	if privateKey == nil {
+		return nil, errors.New("Invalid ecdsa private key. It must be different from nil.")
+	}
+
+	return sm2.MarshalSm2UnecryptedPrivateKey(privateKey)
 }
 
 // PrivateKeyToPEM converts the private key to PEM format.

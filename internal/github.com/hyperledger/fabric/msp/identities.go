@@ -23,7 +23,7 @@ package msp
 import (
 	"crypto"
 	"crypto/rand"
-	"crypto/x509"
+	"github.com/tjfoc/gmsm/sm2"
 	"encoding/hex"
 
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
@@ -46,8 +46,7 @@ type identity struct {
 	id *IdentityIdentifier
 
 	// cert contains the x.509 certificate that signs the public key of this instance
-	cert *x509.Certificate
-
+	cert *sm2.Certificate
 	// this is the public key of this instance
 	pk core.Key
 
@@ -55,7 +54,7 @@ type identity struct {
 	msp *bccspmsp
 }
 
-func newIdentity(cert *x509.Certificate, pk core.Key, msp *bccspmsp) (Identity, error) {
+func newIdentity(cert *sm2.Certificate, pk core.Key, msp *bccspmsp) (Identity, error) {
 	if mspIdentityLogger.IsEnabledFor(logging.DEBUG) {
 		mspIdentityLogger.Debugf("Creating identity instance for cert %s", certToPEM(cert))
 	}
@@ -197,6 +196,8 @@ func (id *identity) getHashOpt(hashFamily string) (core.HashOpts, error) {
 		return bccsp.GetHashOpt(bccsp.SHA256)
 	case bccsp.SHA3:
 		return bccsp.GetHashOpt(bccsp.SHA3_256)
+	case bccsp.GMSM3:
+		return bccsp.GetHashOpt(bccsp.GMSM3)
 	}
 	return nil, errors.Errorf("hash familiy not recognized [%s]", hashFamily)
 }
@@ -209,7 +210,7 @@ type signingidentity struct {
 	signer crypto.Signer
 }
 
-func newSigningIdentity(cert *x509.Certificate, pk core.Key, signer crypto.Signer, msp *bccspmsp) (SigningIdentity, error) {
+func newSigningIdentity(cert *sm2.Certificate, pk core.Key, signer crypto.Signer, msp *bccspmsp) (SigningIdentity, error) {
 	//mspIdentityLogger.Infof("Creating signing identity instance for ID %s", id)
 	mspId, err := newIdentity(cert, pk, msp)
 	if err != nil {

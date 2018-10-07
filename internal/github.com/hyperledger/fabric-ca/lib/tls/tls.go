@@ -22,7 +22,9 @@ package tls
 
 import (
 	"crypto/tls"
-	"crypto/x509"
+	//tls "github.com/tjfoc/gmtls"
+
+	"github.com/tjfoc/gmsm/sm2"
 	"time"
 
 	"github.com/pkg/errors"
@@ -79,7 +81,7 @@ func GetClientTLSConfig(cfg *ClientTLSConfig, csp core.CryptoSuite) (*tls.Config
 	} else {
 		log.Debug("Client TLS certificate and/or key file not provided")
 	}
-	rootCAPool := x509.NewCertPool()
+	rootCAPool := sm2.NewCertPool()
 	if len(cfg.CertFiles) == 0 {
 		return nil, errors.New("No TLS certificate files were provided")
 	}

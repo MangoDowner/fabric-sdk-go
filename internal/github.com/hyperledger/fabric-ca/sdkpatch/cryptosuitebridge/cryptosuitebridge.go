@@ -19,6 +19,7 @@ import (
 	"github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/utils"
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
 	"github.com/hyperledger/fabric-sdk-go/pkg/core/cryptosuite"
+	"github.com/tjfoc/gmsm/sm2"
 )
 
 const (
@@ -61,6 +62,12 @@ func PEMtoPrivateKey(raw []byte, pwd []byte) (interface{}, error) {
 func PrivateKeyToDER(privateKey *ecdsa.PrivateKey) ([]byte, error) {
 	return utils.PrivateKeyToDER(privateKey)
 }
+
+// PrivateKeyToDER marshals is bridge for utils.PrivateKeyToDER
+func PrivateSM2KeyToDER(privateKey *sm2.PrivateKey) ([]byte, error) {
+	return utils.PrivateSM2KeyToDER(privateKey)
+}
+
 
 //GetDefault returns default cryptosuite from bccsp factory default
 func GetDefault() core.CryptoSuite {
@@ -116,4 +123,12 @@ func GetX509PublicKeyImportOpts(ephemeral bool) core.KeyImportOpts {
 // or PKCS#8 format.
 func GetECDSAPrivateKeyImportOpts(ephemeral bool) core.KeyImportOpts {
 	return &bccsp.ECDSAPrivateKeyImportOpts{Temporary: ephemeral}
+}
+
+func GetGMSM2PrivateKeyImportOpts(ephemeral bool) core.KeyImportOpts {
+	return &bccsp.GMSM2PrivateKeyImportOpts{Temporary: ephemeral}
+}
+
+func GetGMSM2PublicKeyImportOpts(ephemeral bool) core.KeyImportOpts {
+	return &bccsp.GMSM2PublicKeyImportOpts{Temporary: ephemeral}
 }
