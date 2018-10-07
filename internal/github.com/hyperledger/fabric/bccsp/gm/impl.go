@@ -25,6 +25,7 @@ import (
 	flogging "github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkpatch/logbridge"
 
 	"crypto/sha256"
+	"fmt"
 )
 
 var (
@@ -200,7 +201,9 @@ func (csp *impl) KeyImport(raw interface{}, opts bccsp.KeyImportOpts) (k bccsp.K
 
 	k, err = keyImporter.KeyImport(raw, opts)
 	if err != nil {
-		return nil, errors.Wrapf( err,"Failed importing key with opts [%v]", opts)
+
+		return nil, errors.Wrapf( err,"无法依据opts[%v]导入密钥\r\n", opts)
+		//return nil, errors.Wrapf( err,"Failed importing key with opts [%v]", opts)
 	}
 
 	// If the key is not Ephemeral, store it.
@@ -233,8 +236,11 @@ func (csp *impl) Hash(msg []byte, opts bccsp.HashOpts) (digest []byte, err error
 	}
 
 	hasher, found := csp.hashers[reflect.TypeOf(opts)]
+	fmt.Println(csp.hashers)
+	fmt.Println(reflect.TypeOf(opts))
 	if !found {
-		return nil, errors.Errorf( "Unsupported 'HashOpt' provided [%v]", opts)
+		//return nil, errors.Errorf( "Unsupported 'HashOpt' provided [%v]", opts)
+		return nil, errors.Errorf( "\r\n[Hash]提供了不支持的 'HashOpt' [%v]\r\n", opts)
 	}
 
 	digest, err = hasher.Hash(msg, opts)

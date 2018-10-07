@@ -216,7 +216,8 @@ func DERToPrivateKey(der []byte) (key interface{}, err error) {
 		return
 	}
 
-	return nil, errors.New("Invalid key type. The DER must contain an rsa.PrivateKey or ecdsa.PrivateKey")
+	return nil, errors.New("非法密钥类型. The DER must contain an rsa.PrivateKey or ecdsa.PrivateKey")
+	//return nil, errors.New("Invalid key type. The DER must contain an rsa.PrivateKey or ecdsa.PrivateKey")
 }
 
 // PEMtoPrivateKey unmarshals a pem to private key
@@ -240,19 +241,20 @@ func PEMtoPrivateKey(raw []byte, pwd []byte) (interface{}, error) {
 		if err != nil {
 			return nil, fmt.Errorf("Failed PEM decryption [%s]", err)
 		}
-
-		key, err := DERToPrivateKey(decrypted)
+		//key, err := DERToPrivateKey(decrypted)
+		key, err := sm2.ParsePKCS8UnecryptedPrivateKey(decrypted)
 		if err != nil {
 			return nil, err
 		}
 		return key, err
 	}
+	//cert, err := DERToPrivateKey(block.Bytes)
+	key, err := sm2.ParsePKCS8UnecryptedPrivateKey(block.Bytes)
 
-	cert, err := DERToPrivateKey(block.Bytes)
 	if err != nil {
 		return nil, err
 	}
-	return cert, err
+	return key, err
 }
 
 // PEMtoAES extracts from the PEM an AES key

@@ -132,7 +132,8 @@ func (mgr *IdentityManager) GetUser(username string) (*User, error) { //nolint
 		if privateKey == nil {
 			privateKey, err = mgr.getPrivateKeyFromCert(username, certBytes)
 			if err != nil {
-				return nil, errors.WithMessage(err, "getting private key from cert failed")
+``				return nil, errors.WithMessage(err, "从证书获取私钥失败\r\n")
+				//return nil, errors.WithMessage(err, "getting private key from cert failed")
 			}
 		}
 		if privateKey == nil {
@@ -222,24 +223,29 @@ func (mgr *IdentityManager) getPrivateKeyFromCert(username string, cert []byte) 
 	}
 	pubKey, err := cryptoutil.GetPublicKeyFromCert(cert, mgr.cryptoSuite)
 	if err != nil {
-		return nil, errors.WithMessage(err, "fetching public key from cert failed")
+		return nil, errors.WithMessage(err, "从证书获取公钥失败\r\n")
+		//return nil, errors.WithMessage(err, "fetching public key from cert failed")
 	}
 	privKey, err := mgr.getPrivateKeyFromKeyStore(username, pubKey.SKI())
 	if err == nil {
 		return privKey, nil
 	}
+	fmt.Println(">>> 错误在这里:", err, "\r\n\r\n")
 	if err != core.ErrKeyValueNotFound {
-		return nil, errors.WithMessage(err, "fetching private key from key store failed")
+		//return nil, errors.WithMessage(err, "fetching private key from key store failed")
+		return nil, errors.WithMessage(err, "从key store获取私钥失败")
 	}
 	return mgr.cryptoSuite.GetKey(pubKey.SKI())
 }
 
 func (mgr *IdentityManager) getPrivateKeyFromKeyStore(username string, ski []byte) (core.Key, error) {
 	pemBytes, err := mgr.getPrivateKeyPemFromKeyStore(username, ski)
+
 	if err != nil {
 		return nil, err
 	}
 	if pemBytes != nil {
+
 		return fabricCaUtil.ImportBCCSPKeyFromPEMBytes(pemBytes, mgr.cryptoSuite, true)
 	}
 	return nil, core.ErrKeyValueNotFound

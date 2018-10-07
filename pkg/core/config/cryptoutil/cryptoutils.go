@@ -62,11 +62,11 @@ func GetPublicKeyFromCert(cert []byte, cs core.CryptoSuite) (core.Key, error) {
 	if err != nil {
 		return nil, errors.Errorf("Unable to parse cert from decoded bytes: %s", err)
 	}
-
 	// get the public key in the right format
 	key, err := cs.KeyImport(x509Cert, factory.GetX509PublicKeyImportOpts(true))
 	if err != nil {
-		return nil, errors.WithMessage(err, "Failed to import certificate's public key")
+		return nil, errors.WithMessage(err, "无法导入证书的公钥\r\n")
+		//return nil, errors.WithMessage(err, "Failed to import certificate's public key")
 	}
 
 	return key, nil
