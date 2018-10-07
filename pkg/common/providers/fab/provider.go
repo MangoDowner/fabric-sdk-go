@@ -8,7 +8,7 @@ package fab
 
 import (
 	reqContext "context"
-	tls "github.com/tjfoc/gmtls"
+	tls "crypto/gmtls"
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/options"
 
 	"time"
@@ -16,7 +16,7 @@ import (
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/msp"
 	"google.golang.org/grpc"
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 )
 
 // ClientContext contains the client context

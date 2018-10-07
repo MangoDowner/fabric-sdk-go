@@ -8,7 +8,7 @@ package orderer
 
 import (
 	reqContext "context"
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 	"io"
 	"time"
 
@@ -70,6 +70,7 @@ func New(config fab.EndpointConfig, opts ...Option) (*Orderer, error) {
 			return nil, err
 		}
 	}
+
 	var grpcOpts []grpc.DialOption
 	if orderer.kap.Time > 0 {
 		grpcOpts = append(grpcOpts, grpc.WithKeepaliveParams(orderer.kap))

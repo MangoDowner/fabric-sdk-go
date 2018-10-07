@@ -8,7 +8,7 @@ package mockfab
 
 import (
 	"crypto/tls"
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 	"time"
 
 	"github.com/golang/mock/gomock"

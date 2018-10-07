@@ -9,7 +9,7 @@ package peer
 import (
 	reqContext "context"
 
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 
 	"github.com/spf13/cast"
 	"google.golang.org/grpc"

@@ -14,7 +14,7 @@ import (
 	"regexp"
 
 	"github.com/pkg/errors"
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 )
 
 // IsTLSEnabled is a generic function that expects a URL and verifies if it has

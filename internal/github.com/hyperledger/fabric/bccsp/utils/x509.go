@@ -22,7 +22,7 @@ package utils
 
 import (
 	"crypto/x509"
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 )
 
 // DERToX509Certificate converts der to x509

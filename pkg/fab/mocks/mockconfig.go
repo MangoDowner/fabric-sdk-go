@@ -7,13 +7,13 @@ SPDX-License-Identifier: Apache-2.0
 package mocks
 
 import (
-	tls "github.com/tjfoc/gmtls"
+	tls "crypto/gmtls"
 	"time"
 
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
 	"github.com/hyperledger/fabric-sdk-go/pkg/core/config/endpoint"
 
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/msp"

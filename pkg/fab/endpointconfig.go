@@ -7,8 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 package fab
 
 import (
-	tls "github.com/tjfoc/gmtls"
-	"github.com/tjfoc/gmsm/sm2"
+	tls "crypto/gmtls"
+	"crypto/sm2"
 	"reflect"
 	"regexp"
 	"strconv"

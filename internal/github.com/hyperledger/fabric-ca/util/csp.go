@@ -24,7 +24,7 @@ import (
 	"crypto"
 	"crypto/ecdsa"
 	"crypto/rsa"
-	tls "github.com/tjfoc/gmtls"
+	"crypto/tls"
 	"encoding/hex"
 	"encoding/pem"
 	"fmt"
@@ -37,7 +37,7 @@ import (
 	factory "github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric-ca/sdkpatch/cryptosuitebridge"
 	log "github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric-ca/sdkpatch/logbridge"
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 )
 
 // getBCCSPKeyOpts generates a key as specified in the request.

@@ -15,8 +15,10 @@ limitations under the License.
 
 package gmcredentials
 
-import "github.com/tjfoc/gmtls"
-
+import (
+	// "github.com/tjfoc/gmtls"
+	gmtls "crypto/gmtls"
+)
 // cloneTLSConfig returns a shallow clone of the exported
 // fields of cfg, ignoring the unexported sync.Once, which
 // contains a mutex and must not be copied.

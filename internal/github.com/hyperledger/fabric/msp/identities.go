@@ -23,7 +23,7 @@ package msp
 import (
 	"crypto"
 	"crypto/rand"
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 	"encoding/hex"
 
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"

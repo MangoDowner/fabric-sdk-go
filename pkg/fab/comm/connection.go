@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 package comm
 
 import (
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 	"sync/atomic"
 
 	"github.com/pkg/errors"

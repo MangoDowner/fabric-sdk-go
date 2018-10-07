@@ -8,7 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 package verifier
 
 import (
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 	"time"
 
 	"github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/utils"

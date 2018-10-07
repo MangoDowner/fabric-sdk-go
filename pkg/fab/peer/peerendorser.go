@@ -8,7 +8,7 @@ package peer
 
 import (
 	reqContext "context"
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 	"strconv"
 	"strings"
 	"time"

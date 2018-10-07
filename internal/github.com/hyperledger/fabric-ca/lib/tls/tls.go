@@ -21,10 +21,10 @@ Please review third_party pinning scripts and patches for more details.
 package tls
 
 import (
-	"crypto/tls"
+	tls "crypto/tls"
 	//tls "github.com/tjfoc/gmtls"
 
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 	"time"
 
 	"github.com/pkg/errors"

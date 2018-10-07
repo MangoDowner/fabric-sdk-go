@@ -22,8 +22,9 @@ import (
 	"net"
 	"strings"
 
-	"github.com/tjfoc/gmsm/sm2"
-	"github.com/tjfoc/gmtls"
+	"crypto/sm2"
+	// "github.com/tjfoc/gmtls"
+	"crypto/gmtls"
 
 	"google.golang.org/grpc/credentials"
 

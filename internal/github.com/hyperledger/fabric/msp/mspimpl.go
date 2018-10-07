@@ -22,7 +22,7 @@ import (
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
 	m "github.com/hyperledger/fabric-sdk-go/third_party/github.com/hyperledger/fabric/protos/msp"
 	"github.com/pkg/errors"
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 )
 
 // mspSetupFuncType is the prototype of the setup function

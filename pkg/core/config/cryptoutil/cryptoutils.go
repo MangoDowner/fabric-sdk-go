@@ -10,7 +10,7 @@ import (
 	"crypto"
 	"crypto/ecdsa"
 	"crypto/rsa"
-	tls "github.com/tjfoc/gmtls"
+	tls "crypto/gmtls"
 	"crypto/x509"
 	"encoding/pem"
 	"io"

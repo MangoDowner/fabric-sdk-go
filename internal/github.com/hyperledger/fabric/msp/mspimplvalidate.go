@@ -12,7 +12,7 @@ package msp
 
 import (
 	"bytes"
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 
 	"time"
 

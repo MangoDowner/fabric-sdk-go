@@ -26,7 +26,7 @@ import (
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
-	"github.com/tjfoc/gmsm/sm2"
+	"crypto/sm2"
 	"encoding/asn1"
 	"encoding/pem"
 	"errors"
