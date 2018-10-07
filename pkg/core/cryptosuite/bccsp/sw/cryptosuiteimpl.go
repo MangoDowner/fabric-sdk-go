@@ -8,7 +8,7 @@ package sw
 
 import (
 	"github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp"
-	bccspSw "github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/factory/sw"
+	bccspGm "github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/factory/gm"
 	"github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/sw"
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/logging"
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
@@ -45,8 +45,8 @@ func GetSuiteWithDefaultEphemeral() (core.CryptoSuite, error) {
 	return wrapper.NewCryptoSuite(bccsp), nil
 }
 
-func getBCCSPFromOpts(config *bccspSw.SwOpts) (bccsp.BCCSP, error) {
-	f := &bccspSw.SWFactory{}
+func getBCCSPFromOpts(config *sw2.SwOpts) (bccsp.BCCSP, error) {
+	f := &bccspGm.GMFactory{}
 
 	csp, err := f.Get(config)
 	if err != nil {
@@ -66,7 +66,7 @@ func GetSuite(securityLevel int, hashFamily string, keyStore bccsp.KeyStore) (co
 }
 
 //GetOptsByConfig Returns Factory opts for given SDK config
-func getOptsByConfig(c core.CryptoSuiteConfig) *bccspSw.SwOpts {
+func getOptsByConfig(c core.CryptoSuiteConfig) *sw2.SwOpts {
 	opts := &sw2.SwOpts{
 		HashFamily: "SM3",
 		SecLevel:   c.SecurityLevel(),
@@ -80,7 +80,7 @@ func getOptsByConfig(c core.CryptoSuiteConfig) *bccspSw.SwOpts {
 	return opts
 }
 
-func getEphemeralOpts() *bccspSw.SwOpts {
+func getEphemeralOpts() *sw2.SwOpts {
 	opts := &sw2.SwOpts{
 		HashFamily: "SM3",
 		SecLevel:   256,
