@@ -132,7 +132,7 @@ func (mgr *IdentityManager) GetUser(username string) (*User, error) { //nolint
 		if privateKey == nil {
 			privateKey, err = mgr.getPrivateKeyFromCert(username, certBytes)
 			if err != nil {
-``				return nil, errors.WithMessage(err, "从证书获取私钥失败\r\n")
+				return nil, errors.WithMessage(err, "从证书获取私钥失败\r\n")
 				//return nil, errors.WithMessage(err, "getting private key from cert failed")
 			}
 		}
