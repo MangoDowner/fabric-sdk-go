@@ -173,7 +173,7 @@ func (ki *x509PublicKeyImportOptsKeyImporter) KeyImport(raw interface{}, opts bc
 
 	sm2Cert, ok := raw.(*sm2.Certificate)
 	if !ok {
-		return nil, errors.New("Invalid raw material. Expected *x509.Certificate.")
+		return nil, errors.New("Invalid raw material. Expected *sm2.Certificate.")
 	}
 
 	pk := sm2Cert.PublicKey

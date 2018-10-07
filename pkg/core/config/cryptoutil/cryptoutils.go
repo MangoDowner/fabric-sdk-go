@@ -12,6 +12,7 @@ import (
 	"crypto/rsa"
 	tls "crypto/gmtls"
 	"crypto/x509"
+	"crypto/sm2"
 	"encoding/pem"
 	"io"
 
@@ -57,8 +58,7 @@ func GetPublicKeyFromCert(cert []byte, cs core.CryptoSuite) (core.Key, error) {
 	if dcert == nil {
 		return nil, errors.Errorf("Unable to decode cert bytes [%v]", cert)
 	}
-
-	x509Cert, err := x509.ParseCertificate(dcert.Bytes)
+	x509Cert, err := sm2.ParseCertificate(dcert.Bytes)
 	if err != nil {
 		return nil, errors.Errorf("Unable to parse cert from decoded bytes: %s", err)
 	}
