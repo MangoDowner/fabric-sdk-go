@@ -130,7 +130,8 @@ func (cc *CachingConnector) DialContext(ctx context.Context, target string, opts
 		cc.lock.Lock()
 		setClosed(c)
 		cc.lock.Unlock()
-		return nil, errors.Errorf("dialing connection timed out [%s]", target)
+		return nil, errors.Errorf("[connector:DialContext]连接超时 [%s]", target)
+		//return nil, errors.Errorf("dialing connection timed out [%s]", target)
 	}
 	return c.conn, nil
 }

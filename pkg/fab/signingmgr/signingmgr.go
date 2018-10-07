@@ -25,7 +25,7 @@ type SigningManager struct {
 // @param {Config} config - configuration provider
 // @returns {SigningManager} new signing manager
 func New(cryptoProvider core.CryptoSuite) (*SigningManager, error) {
-	return &SigningManager{cryptoProvider: cryptoProvider, hashOpts: cryptosuite.GetSM3Opts()}, nil
+	return &SigningManager{cryptoProvider: cryptoProvider, hashOpts: cryptosuite.GetSHA256Opts()}, nil
 }
 
 // Sign will sign the given object using provided key

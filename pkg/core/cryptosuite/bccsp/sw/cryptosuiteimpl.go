@@ -22,7 +22,7 @@ var logger = logging.NewLogger("fabsdk/core")
 //GetSuiteByConfig returns cryptosuite adaptor for bccsp loaded according to given config
 func GetSuiteByConfig(config core.CryptoSuiteConfig) (core.CryptoSuite, error) {
 	// TODO: delete this check?
-	if config.SecurityProvider() != "sw" {
+	if config.SecurityProvider() != "sw" && config.SecurityProvider() != "gm" {
 		return nil, errors.Errorf("Unsupported BCCSP Provider: %s", config.SecurityProvider())
 	}
 

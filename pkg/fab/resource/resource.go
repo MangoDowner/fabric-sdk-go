@@ -395,7 +395,7 @@ func queryChaincodeWithTarget(reqCtx reqContext.Context, request fab.ChaincodeIn
 		},
 	)
 	if err != nil {
-		return nil, errors.WithMessage(err, "SendProposal failed")
+		return nil, errors.WithMessage(err, "[queryChaincodeWithTarget]SendProposal failed")
 	}
 
 	tpr := resp.([]*fab.TransactionProposalResponse)
