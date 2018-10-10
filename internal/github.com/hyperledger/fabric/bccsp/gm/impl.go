@@ -25,7 +25,6 @@ import (
 	flogging "github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkpatch/logbridge"
 
 	"crypto/sha256"
-	"fmt"
 )
 
 var (
@@ -236,8 +235,6 @@ func (csp *impl) Hash(msg []byte, opts bccsp.HashOpts) (digest []byte, err error
 	}
 
 	hasher, found := csp.hashers[reflect.TypeOf(opts)]
-	fmt.Println(csp.hashers)
-	fmt.Println(reflect.TypeOf(opts))
 	if !found {
 		//return nil, errors.Errorf( "Unsupported 'HashOpt' provided [%v]", opts)
 		return nil, errors.Errorf( "\r\n[Hash]提供了不支持的 'HashOpt' [%v]\r\n", opts)

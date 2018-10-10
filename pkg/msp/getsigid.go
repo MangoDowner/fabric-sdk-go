@@ -230,7 +230,6 @@ func (mgr *IdentityManager) getPrivateKeyFromCert(username string, cert []byte) 
 	if err == nil {
 		return privKey, nil
 	}
-	fmt.Println(">>> 错误在这里:", err, "\r\n\r\n")
 	if err != core.ErrKeyValueNotFound {
 		//return nil, errors.WithMessage(err, "fetching private key from key store failed")
 		return nil, errors.WithMessage(err, "从key store获取私钥失败")

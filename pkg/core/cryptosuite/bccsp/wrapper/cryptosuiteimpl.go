@@ -11,7 +11,6 @@ import (
 
 	"github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp"
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
-	"fmt"
 )
 
 //NewCryptoSuite returns cryptosuite adaptor for given bccsp.BCCSP implementation
@@ -39,7 +38,6 @@ func (c *CryptoSuite) KeyGen(opts core.KeyGenOpts) (k core.Key, err error) {
 
 // KeyImport is a wrapper of BCCSP.KeyImport
 func (c *CryptoSuite) KeyImport(raw interface{}, opts core.KeyImportOpts) (k core.Key, err error) {
-	fmt.Println("[cryptosuiteimpl:KeyImport]")
 	key, err := c.BCCSP.KeyImport(raw, opts)
 	return GetKey(key), err
 }
