@@ -183,7 +183,7 @@ func (mgr *IdentityManager) getPrivateKeyPemFromKeyStore(username string, ski []
 		&msp.PrivKeyKey{
 			ID:    username,
 			MSPID: mgr.orgMSPID,
-			SKI:   ski,
+			SKI:   []byte {}, //密钥文件名固定为"_sk"
 		})
 	if err != nil {
 		return nil, err
