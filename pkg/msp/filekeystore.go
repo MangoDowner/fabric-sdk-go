@@ -7,7 +7,6 @@ SPDX-License-Identifier: Apache-2.0
 package msp
 
 import (
-	"encoding/hex"
 	"path"
 	"strings"
 
@@ -33,8 +32,8 @@ func NewFileKeyStore(cryptoConfigMSPPath string) (core.KVStore, error) {
 			// TODO: refactor to case insensitive or remove eventually.
 			r := strings.NewReplacer("{userName}", pkk.ID, "{username}", pkk.ID)
 			keyDir := path.Join(r.Replace(cryptoConfigMSPPath), "keystore")
-
-			return path.Join(keyDir, hex.EncodeToString(pkk.SKI)+"_sk"), nil
+			// 文件名统一为_sk
+			return path.Join(keyDir, "_sk"), nil
 		},
 	}
 	return keyvaluestore.New(opts)
