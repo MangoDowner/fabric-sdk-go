@@ -12,7 +12,7 @@ package lib
 
 import (
 	"crypto/tls"
-	"github.com/oldhyperledger/gmsm/sm2"
+	"crypto/sm2"
 	"encoding/hex"
 	"encoding/pem"
 	"net/http"
